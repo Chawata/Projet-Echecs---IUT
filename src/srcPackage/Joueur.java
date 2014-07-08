@@ -19,7 +19,7 @@ public class Joueur
 		boolean isLineValid = false, isColumnValid = false;
 		String x = null, y = null;
 		
-		while (!isLineValid && !isColumnValid)
+		while (!isLineValid || !isColumnValid)
 		{
 			String input = scanner.nextLine().substring(0, 2);
 			// La chaîne ne doit faire que deux caractères, car l'entrée sera toujours de type "[A-H][1-8]".
