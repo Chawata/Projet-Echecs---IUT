@@ -1,5 +1,5 @@
 /**
- * Tests unitaires de la classe Case
+ * Tests unitaires de la classe Case.
  * @author Ben Vittupier
  * @version 1.0
  */

@@ -1,7 +1,7 @@
 /**
+* Classe représentant un Échiquier et tout ce qui lui correspond.
 * @version 1.0 
-* @Anne-Sophie Segonds
-*
+* @author Anne-Sophie Segonds
 */
 
 package srcPackage;
@@ -17,34 +17,37 @@ public class Echiquier
 	
 	private Case[][] tabCase; 
 	
+	/**
+	 * Créé un échiquer de 8 par 8 et l'initialise avec des cases vides.
+	 */
 	public Echiquier()
 	{
-		this.tabCase = new Case[N][N] ;
+		this.tabCase = new Case[N][N];
 
-		for(int i = 0 ; i < this.tabCase.length ; i++)
+		for(int i = 0; i < this.tabCase.length; i++)
 		{
-			for(int j = 0 ; j < this.tabCase[i].length ; j++)
+			for(int j = 0; j < this.tabCase[i].length; j++)
 			{
-				this.tabCase[i][j] = new Case(i,j);
+				this.tabCase[i][j] = new Case(i, j);
 			}
 		}
 	}
 
 	public String toString()
 	{
-		String result = " " ;
+		String result = " ";
 		
-		for(int i = 0 ; i < Echiquier.Abscisses.size() ; i++)
+		for(int i = 0; i < Echiquier.Abscisses.size(); i++)
 		{
-			result = result + "  "  + Echiquier.Abscisses.get(i)  ; 
+			result = result + "  "  + Echiquier.Abscisses.get(i); 
 		}
 		result = result + "\n";
 		
-		for(int i = 0 ; i < this.tabCase.length ; i++)
+		for(int i = 0; i < this.tabCase.length; i++)
 		{
 			result = result + Echiquier.Ordonnees.get(i) + " "; 
 	
-			for(int j = 0 ; j < this.tabCase[i].length ; j++)
+			for(int j = 0; j < this.tabCase[i].length; j++)
 			{		
 				result = result + " " + this.tabCase[i][j]  + " ";
 			}
@@ -59,6 +62,9 @@ public class Echiquier
 		return this.tabCase[i][j];
 	}
 
+	/**
+	 * Méthode qui, pour un échiquier créé, va initialiser les cases avec les pièces par défaut.
+	 */
 	public void initialiserEchiquier()
 	{
 		final int ligneNoirPion = 1;

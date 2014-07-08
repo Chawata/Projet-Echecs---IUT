@@ -1,3 +1,9 @@
+/**
+ * Tests unitaires sur EnumCouleurs.
+ * @author Ben Vittupier
+ * @version 1.0
+ */
+
 package testPackage;
 
 import srcPackage.EnumCouleurs;

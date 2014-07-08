@@ -9,6 +9,10 @@ public class Joueur
 {
 	private String nom;
 	
+	/**
+	 * Méthode qui demande et retourne les coordonnées (x ; y) et qui vérifie qu'elles sont valides.
+	 * @return Un tableau de 2 int, respecivement x et y.
+	 */
 	private int[] obtenirCooredonnees()
 	{
 		Scanner scanner = new Scanner(System.in);
@@ -18,6 +22,7 @@ public class Joueur
 		while (!isLineValid && !isColumnValid)
 		{
 			String input = scanner.nextLine();
+			// La chaîne ne doit faire que deux caractères, car l'entrée sera toujours de type "[A-H][1-8]".
 			if (input.length() == 2)
 			{
 				if (!isLineValid)
@@ -29,7 +34,7 @@ public class Joueur
 					}
 					else
 					{
-						System.out.println("La ligne demand�e est invalide, merci de recommencer.");
+						System.out.println("La ligne demand�e est invalide, merci de recommencer.");
 					}
 				}
 				
@@ -42,13 +47,13 @@ public class Joueur
 					}
 					else
 					{
-						System.out.println("La colonne demand�e est invalide, merci de recommencer.");
+						System.out.println("La colonne demand�e est invalide, merci de recommencer.");
 					}
 				}
 			}
 			else
 			{
-				System.out.println("Entr�e incorrecte, merci de recommencer.");
+				System.out.println("Entr�e incorrecte, merci de recommencer.");
 			}
 		}
 		
@@ -65,17 +70,25 @@ public class Joueur
 	{
 		this.nom = nomJoueur;
 	}
-
+	
+	/**
+	 * Retourne une Case qui correspond à la case sur laquelle se trouve la pièce à déplacer.
+	 * @return Case valide
+	 */
 	public Case saisirCaseDepart()
 	{
-		System.out.println("Saisissez la case sur laquelle se trouve le pion que vous souhaitez d�placer (ligne puis colonne) : ");
+		System.out.println("Saisissez la case sur laquelle se trouve la pièce que vous souhaitez déplacer (ligne puis colonne) : ");
 		int[] coordonneesDepart = this.obtenirCooredonnees();
 		return new Case(coordonneesDepart[0], coordonneesDepart[1]);
 	}
 
+	/**
+	 * Retourne une Case qui correspond à la case sur laquelle on veut déplacer une pièce.
+	 * @return Case valide
+	 */
 	public Case saisirCaseArrivee()
 	{
-		System.out.println("Saisissez la case sur laquelle vous souhaitez d�placer votre pi�ce (ligne puis colonne) : ");
+		System.out.println("Saisissez la case sur laquelle vous souhaitez déplacer votre pièce (ligne puis colonne) : ");
 		int[] coordonneesArrivee = this.obtenirCooredonnees();
 		return new Case(coordonneesArrivee[0], coordonneesArrivee[1]);
 	}

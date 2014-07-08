@@ -1,3 +1,8 @@
+/**
+ * Classe abstraite représentant le concept de pièce. 
+ * @author Ben Vittupier
+ */
+
 package srcPackage;
 
 public abstract class Piece
@@ -18,9 +23,6 @@ public abstract class Piece
     
     public String toString()
     { 
-        if (this.getCouleur() == EnumCouleurs.NOIR)
-            return "noir";
-        else
-            return "blanc";
+        return this.getCouleur().toString();
     }
 }

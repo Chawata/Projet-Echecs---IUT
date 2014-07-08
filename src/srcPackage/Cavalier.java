@@ -1,19 +1,28 @@
-/*** @version 1.0 
-* @Husch Julien*/
+/**
+* Classe Cavalier, qui émule le comportement d'une pièce Cavalier
+* @version 1.0 
+* @author Husch Julien
+*/
 
 package srcPackage;
 
 public class Cavalier extends Piece
-{    
+{
+	/**
+	 * Créé un cavalier de la couleur demandée.
+	 * @param couleur Couleur de type EnumCouleurs.
+	 */
 	public Cavalier(EnumCouleurs couleur)    
 	{        
 		super(couleur);    
-	}        
+	}
 
 	/**
-	 * M�thode v�rifiant si le d�placement de la piece est possible.
-         * Si le quotient des deux d�placement vaut 2 ou 5 alors la piece ait bien un deplacement en forme de L.
-         */
+	 * Méthode vérifiant si le déplacement est possible.
+	 * @return true si le quotient des deux déplacements (ligne et colonne) vaut 0.5 ou 2, false sinon.
+	 * @param caseDepart La case où est situé le cavalier à bouger.
+	 * @param caseArrivee La case où l'on souhaite déplacer le cavalier.
+	 */
 	public boolean deplacementPossible(Case caseDepart, Case caseArrivee)    
 	{
 		int deplacementcolonne = caseDepart.getY() - caseArrivee.getY();

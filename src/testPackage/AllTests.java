@@ -1,3 +1,9 @@
+/**
+ * Regroupement de tous les tests unitaires pour tous les exécuter en même temps.
+ * @author Ben Vittupier
+ * @version 1.0
+ */
+
 package testPackage;
 
 import java.util.List;
@@ -20,6 +26,10 @@ import org.junit.runner.notification.Failure;
 )
 public class AllTests
 {
+	/**
+	 * Cette méthode va, pour chaque classe qu'on lui donne, lancer tous ses tests.
+	 * @param args Arguments optionnels pouvant être donnés en ligne de commande.
+	 */
 	public static void main(String[] args)
 	{
 		List<Class<?>> classes = new ArrayList<Class<?>>();
@@ -33,6 +43,10 @@ public class AllTests
 		}
 	}
 	
+	/**
+	 * Cette méthode lance les tests d'une classe et affiche les éventuelles erreurs.
+	 * @param testClass La classe dont on veut lancer les tests.
+	 */
 	private static void runTestCase(Class<?> testClass)
     {
         Result result = JUnitCore.runClasses(testClass);
