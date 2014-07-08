@@ -267,4 +267,26 @@ public class Partie
 		
 		return result;
 	}
+	
+	public Case getPositionKing(EnumCouleurs couleur)
+	{
+		Case caseKing = null;
+		int i = 0;
+		int j = 0;
+	 
+		while(caseKing==null)
+		{
+			Piece pieceTemp = echiquierPartie.getCase(i,j).getPiece();
+	  
+			if (pieceTemp instanceof Roi && pieceTemp.getCouleur() == couleur)
+			{
+				caseKing = new Case(i,j);
+			}
+	  
+			i++;
+			j++;
+		}
+		
+		return caseKing;
+	}
 }
