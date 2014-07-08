@@ -5,6 +5,8 @@
 
 package srcPackage;
 
+import java.util.ArrayList;
+
 public class Roi extends Piece
 {
 	/**
@@ -22,21 +24,24 @@ public class Roi extends Piece
 	 * @param caseArrivee Case où l'on veut déplacer le Roi sélectionné.
 	 */
 	public boolean deplacementPossible(Case caseDepart, Case caseArrivee)    
-	{        
-		int deplacementcolonne = caseDepart.getY() - caseArrivee.getY();
-		int deplacementligne = caseDepart.getX() - caseArrivee.getX();
-
-		int resultat = Math.abs(deplacementcolonne) - Math.abs(deplacementligne);
+	{
+		ArrayList<Case> casesPossibles = new ArrayList<Case>();
+		final int x = caseDepart.getX();
+		final int y = caseDepart.getY();
 		
-		if ((resultat == 0 && caseArrivee.getY() == caseDepart.getY()+1) || (resultat == 0 && caseArrivee.getY() == caseDepart.getY()-1) || (resultat == 1 && caseArrivee.getX() == caseDepart.getX()+1) || (resultat == 1 && caseArrivee.getX() == caseDepart.getX()-1) || (resultat == -1 && caseArrivee.getX() == caseDepart.getX()+1) || (resultat == -1 && caseArrivee.getX() == caseDepart.getX()-1))
-		{	
-			return true;
+		for (int i = -1; i <= 1; ++i)
+		{
+			for (int j = -1; j <= 1; ++j)
+			{
+				// Cas particulier pour ne pas ajouter Case(x, y) aux cases où l'on peut se déplacer.
+				if (i != 0 || j != 0)
+				{
+					casesPossibles.add(new Case(x + i, y + j));
+				}
+			}
 		}
 		
-		else
-		{
-			return false;
-		} 
+		return casesPossibles.contains(caseArrivee);
 	}        
 
 	public String toString()    

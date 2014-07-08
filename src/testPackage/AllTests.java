@@ -21,7 +21,13 @@ import org.junit.runner.notification.Failure;
 (
 	{
 		EnumCouleursTest.class,
-		CaseTest.class
+		CaseTest.class,
+		CavalierTest.class,
+		FouTest.class,
+		PionTest.class,
+		ReineTest.class,
+		RoiTest.class,
+		TourTest.class
 	}
 )
 public class AllTests
@@ -36,6 +42,12 @@ public class AllTests
 		
 		classes.add(EnumCouleursTest.class);
 		classes.add(CaseTest.class);
+		classes.add(CavalierTest.class);
+		classes.add(FouTest.class);
+		classes.add(PionTest.class);
+		classes.add(ReineTest.class);
+		classes.add(RoiTest.class);
+		classes.add(TourTest.class);
 		
 		for (Class<?> testClass : classes)
 		{

@@ -88,5 +88,22 @@ public class Case
 	public boolean caseOccupee()
 	{
 		return this.pieceC != null;
-	}	
+	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if (o == null)
+		{
+			return false;
+		}
+		
+		if (!(o instanceof Case))
+		{
+			return false;
+		}
+		
+		Case c = (Case)o;
+		return this.getX() == c.getX() && this.getY() == c.getY();
+	}
 }

@@ -26,12 +26,12 @@ public class Pion extends Piece
 	{        
 		if (this.getCouleur() == EnumCouleurs.NOIR)
 		{
-			return ((caseDepart.getY() == caseArrivee.getY()) && (caseArrivee.getX() == caseDepart.getX() + 1));
+			return ((caseDepart.getX() == caseArrivee.getX()) && (caseArrivee.getY() == caseDepart.getY() + 1));
 		}
 
 		else if (this.getCouleur() == EnumCouleurs.BLANC)
 		{
-			return ((caseDepart.getY() == caseArrivee.getY()) && (caseArrivee.getX() == caseDepart.getX() - 1));
+			return ((caseDepart.getX() == caseArrivee.getX()) && (caseArrivee.getY() == caseDepart.getY() - 1));
 		}
 		
 		else
