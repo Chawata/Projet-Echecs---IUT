@@ -21,13 +21,13 @@ public class Joueur
 		
 		while (!isLineValid && !isColumnValid)
 		{
-			String input = scanner.nextLine();
+			String input = scanner.nextLine().substring(0, 2);
 			// La chaîne ne doit faire que deux caractères, car l'entrée sera toujours de type "[A-H][1-8]".
 			if (input.length() == 2)
 			{
 				if (!isLineValid)
 				{
-					x = scanner.nextLine();
+					x = input.substring(0, 1);
 					if (Echiquier.Abscisses.contains(x))
 					{
 						isLineValid = true;
@@ -40,7 +40,7 @@ public class Joueur
 				
 				if (!isColumnValid)
 				{
-					y = scanner.nextLine();
+					y = input.substring(1, 2);
 					if (Echiquier.Ordonnees.contains(y))
 					{
 						isColumnValid = true;
@@ -61,7 +61,7 @@ public class Joueur
 		
 		int[] coordonnees = new int[2];
 		coordonnees[0] = Echiquier.Abscisses.indexOf(x);
-		coordonnees[1] = Echiquier.Abscisses.indexOf(x);
+		coordonnees[1] = Echiquier.Ordonnees.indexOf(y);
 		
 		return coordonnees;
 	}
