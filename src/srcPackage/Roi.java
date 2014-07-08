@@ -46,6 +46,6 @@ public class Roi extends Piece
 
 	public String toString()    
 	{        
-		return "roi " + super.toString();    
+		return "R" + super.toString();    
 	}
 } 

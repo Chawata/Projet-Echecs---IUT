@@ -34,6 +34,6 @@ public class Reine extends Piece
 
 	public String toString()    
 	{        
-		return "reine " + super.toString();    
+		return "D" + super.toString();    
 	}
 } 

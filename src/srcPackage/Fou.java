@@ -33,6 +33,6 @@ public class Fou extends Piece
 
 	public String toString()    
 	{        
-		return "fou " + super.toString();    
+		return "F" + super.toString();    
 	}
 } 

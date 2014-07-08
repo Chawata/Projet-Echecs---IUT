@@ -42,6 +42,6 @@ public class Pion extends Piece
 
 	public String toString()    
 	{        
-		return "pion " + super.toString();    
+		return "P" + super.toString();    
 	}
 } 

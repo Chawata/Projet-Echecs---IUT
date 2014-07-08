@@ -29,6 +29,6 @@ public class Tour extends Piece
     
     public String toString()
     {
-        return "tour " + super.toString();
+        return "T" + super.toString();
     }
 }

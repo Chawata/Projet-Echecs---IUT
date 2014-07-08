@@ -35,6 +35,6 @@ public class Cavalier extends Piece
 
 	public String toString()    
 	{        
-		return "cavalier " + super.toString();    
+		return "C" + super.toString();    
 	}
 } 

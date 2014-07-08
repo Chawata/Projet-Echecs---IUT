@@ -2,7 +2,7 @@ package srcPackage;
 
 public enum EnumCouleurs
 {
-	NOIR("noir"), BLANC("blanc");
+	NOIR("N"), BLANC("B");
 	
 	private String name = "";
 	
