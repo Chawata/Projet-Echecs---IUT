@@ -20,6 +20,11 @@ public class Partie
     	this.echiquierPartie = new Echiquier();
     }
     
+    public Partie(Echiquier e)
+    {
+    	this.echiquierPartie = e;
+    }
+    
     public boolean pionPeutPrendre(Case caseDepart, Case caseArrivee)
     {
 		Piece pieceDepart = caseDepart.getPiece();
@@ -87,7 +92,7 @@ public class Partie
 			couleurArrivee = caseArrivee.getPiece().getCouleur();
 		}
 	
-		if((!(caseArrivee.caseOccupee())) || (!(couleurDepart.equals(couleurArrivee))))
+		if(!(caseArrivee.caseOccupee()) || couleurDepart != couleurArrivee)
 		{
 			if(!(pieceDepart instanceof Cavalier))
 			{
@@ -100,7 +105,7 @@ public class Partie
 				{
 					if(ligneDepart == ligneArrivee && colonneDepart < colonneArrivee)
 					{
-						for(int i=colonneDepart+1;i<colonneArrivee;i++)
+						for(int i=colonneDepart+1;i<=colonneArrivee;i++)
 						{
 							if(this.echiquierPartie.getCase(ligneDepart,i).caseOccupee())
 							{
@@ -111,7 +116,7 @@ public class Partie
 	
 					if(ligneDepart == ligneArrivee && colonneDepart > colonneArrivee)
 					{
-						for(int i=colonneDepart-1;i>colonneArrivee;i--)
+						for(int i=colonneDepart-1;i>=colonneArrivee;i--)
 						{
 							if(this.echiquierPartie.getCase(ligneDepart,i).caseOccupee())
 							{
@@ -122,7 +127,7 @@ public class Partie
 	
 					if(colonneDepart == colonneArrivee && ligneDepart < ligneArrivee)
 					{
-						for(int i=ligneDepart+1;i<ligneArrivee;i++)
+						for(int i=ligneDepart+1;i<=ligneArrivee;i++)
 						{
 							if(this.echiquierPartie.getCase(ligneDepart,i).caseOccupee())
 							{
@@ -133,7 +138,7 @@ public class Partie
 	
 					if(colonneDepart == colonneArrivee && ligneDepart > ligneArrivee)
 					{
-						for(int i=ligneDepart-1;i>ligneArrivee;i--)
+						for(int i=ligneDepart-1;i>=ligneArrivee;i--)
 						{
 							if(this.echiquierPartie.getCase(ligneDepart,i).caseOccupee())
 							{
@@ -147,7 +152,7 @@ public class Partie
 						int i = ligneDepart-1;
 						int j = colonneDepart-1;
 	
-						while(i>ligneArrivee && j>colonneArrivee)
+						while(i>=ligneArrivee && j>colonneArrivee)
 						{
 							if(this.echiquierPartie.getCase(i,j).caseOccupee())
 							{
@@ -163,7 +168,7 @@ public class Partie
 						int i = ligneDepart-1;
 						int j = colonneDepart+1;
 	
-						while(i>ligneArrivee && j<colonneArrivee)
+						while(i>=ligneArrivee && j<colonneArrivee)
 						{
 							if(this.echiquierPartie.getCase(i,j).caseOccupee())
 							{
@@ -179,7 +184,7 @@ public class Partie
 						int i = ligneDepart+1;
 						int j = colonneDepart-1;
 	
-						while(i<ligneArrivee && j>colonneArrivee)
+						while(i<=ligneArrivee && j>colonneArrivee)
 						{
 							if(this.echiquierPartie.getCase(i,j).caseOccupee())
 							{
@@ -195,7 +200,7 @@ public class Partie
 						int i = ligneDepart+1;
 						int j = colonneDepart+1;
 	
-						while(i<ligneArrivee && j<colonneArrivee)
+						while(i<=ligneArrivee && j<colonneArrivee)
 						{
 							if(this.echiquierPartie.getCase(i,j).caseOccupee())
 							{
@@ -225,7 +230,7 @@ public class Partie
 			}
 		}
 
-		return false;
+		return true;
 	}
 	
 	ArrayList<Case> obtenirPositionPiecesAdverses(EnumCouleurs couleurJoueur)

@@ -61,6 +61,11 @@ public class Echiquier
 	{
 		return this.tabCase[i][j];
 	}
+	
+	public void setCase(Case c)
+	{
+		this.tabCase[c.getX()][c.getY()] = c;
+	}
 
 	/**
 	 * Méthode qui, pour un échiquier créé, va initialiser les cases avec les pièces par défaut.

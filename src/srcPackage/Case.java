@@ -106,4 +106,17 @@ public class Case
 		Case c = (Case)o;
 		return this.getX() == c.getX() && this.getY() == c.getY();
 	}
+	
+	@Override
+	public String toString()
+	{
+		if (this.caseOccupee())
+		{
+			return this.pieceC.toString();
+		}
+		else
+		{
+			return "  ";
+		}
+	}
 }

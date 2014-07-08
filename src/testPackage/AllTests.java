@@ -29,6 +29,7 @@ import org.junit.runner.notification.Failure;
 		RoiTest.class,
 		TourTest.class,
 		JoueurTest.class,
+		PartieTest.class
 	}
 )
 public class AllTests
@@ -50,6 +51,7 @@ public class AllTests
 		classes.add(RoiTest.class);
 		classes.add(TourTest.class);
 		classes.add(JoueurTest.class);
+		classes.add(PartieTest.class);
 		
 		for (Class<?> testClass : classes)
 		{
