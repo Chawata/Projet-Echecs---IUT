@@ -1,5 +1,7 @@
 package srcPackage;
 
+import java.util.ArrayList;
+
 public class Partie
 {
     private Echiquier echiquierPartie; 
@@ -12,6 +14,11 @@ public class Partie
     
     //Tableau à 2 dimensions contenant les coups joués.
     int tabCoup [][];
+    
+    public Partie()
+    {
+    	this.echiquierPartie = new Echiquier();
+    }
     
     public boolean pionPeutPrendre(Case caseDepart, Case caseArrivee)
     {
@@ -64,11 +71,21 @@ public class Partie
 	}
 
 
-	public boolean deplacementNonGener(Case caseDepart, Case caseArrivee)
+	public boolean deplacementNonGene(Case caseDepart, Case caseArrivee)
 	{
 		Piece pieceDepart = caseDepart.getPiece();
 		EnumCouleurs couleurDepart = caseDepart.getPiece().getCouleur();
-		EnumCouleurs couleurArrivee = caseArrivee.getPiece().getCouleur();
+		EnumCouleurs couleurArrivee;// = caseArrivee.getPiece().getCouleur();
+		
+		Piece pieceArrivee = caseArrivee.getPiece();
+		if(pieceArrivee == null)
+		{
+			couleurArrivee = null;
+		}
+		else
+		{
+			couleurArrivee = caseArrivee.getPiece().getCouleur();
+		}
 	
 		if((!(caseArrivee.caseOccupee())) || (!(couleurDepart.equals(couleurArrivee))))
 		{
@@ -209,5 +226,36 @@ public class Partie
 		}
 
 		return false;
+	}
+	
+	ArrayList<Case> obtenirPositionPiecesAdverses(EnumCouleurs couleurJoueur)
+	{
+		ArrayList<Case> result = new ArrayList<Case>();
+		EnumCouleurs couleurAdverse = null;
+		
+		if (couleurJoueur == EnumCouleurs.BLANC)
+		{
+			couleurAdverse = EnumCouleurs.NOIR;
+		}
+		else
+		{
+			couleurAdverse = EnumCouleurs.BLANC;
+		}
+		
+		for (int i = 0; i < Echiquier.Abscisses.size(); ++i)
+		{
+			for (int j = 0; j < Echiquier.Ordonnees.size(); ++j)
+			{
+				Case caseCourante = echiquierPartie.getCase(i, j);
+				Piece pieceCaseCourante = caseCourante.getPiece();
+				
+				if (pieceCaseCourante != null && pieceCaseCourante.getCouleur() == couleurAdverse)
+				{
+					result.add(caseCourante);
+				}
+			}
+		}
+		
+		return result;
 	}
 }
