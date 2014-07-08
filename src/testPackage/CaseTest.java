@@ -1,3 +1,9 @@
+/**
+ * Tests unitaires de la classe Case
+ * @author Ben Vittupier
+ * @version 1.0
+ */
+
 package testPackage;
 
 import static org.junit.Assert.*;
