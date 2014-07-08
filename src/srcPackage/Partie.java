@@ -229,6 +229,10 @@ public class Partie
 				return true;
 			}
 		}
+		else
+		{
+			return false;
+		}
 
 		return true;
 	}
