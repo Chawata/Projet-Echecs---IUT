@@ -15,4 +15,16 @@ public enum EnumCouleurs
 	{
 		return this.name;
 	}
+	
+	public static EnumCouleurs getOpposite(EnumCouleurs couleur)
+	{
+		if (couleur == EnumCouleurs.BLANC)
+		{
+			return EnumCouleurs.NOIR;
+		}
+		else
+		{
+			return EnumCouleurs.BLANC;
+		}
+	}
 }

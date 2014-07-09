@@ -28,12 +28,12 @@ public class Partie
     public boolean pionPeutPrendre(Case caseDepart, Case caseArrivee)
     {
 		Piece pieceDepart = caseDepart.getPiece();
-		EnumCouleurs couleurDepart = caseDepart.getPiece().getCouleur();
+		EnumCouleurs couleurDepart = pieceDepart.getCouleur();
 		EnumCouleurs couleurArrivee = caseArrivee.getPiece().getCouleur();
 	
 		if(pieceDepart instanceof Pion)
 		{
-			if(couleurDepart.equals(couleurArrivee))
+			if (couleurDepart == couleurArrivee)
 			{
 				return false;
 			}
@@ -41,7 +41,7 @@ public class Partie
 			else
 			{
 				int deplacementColonne = caseDepart.getY() - caseArrivee.getY();
-				int deplacementLigne = caseArrivee.getX() - caseArrivee.getX();
+				int deplacementLigne = caseDepart.getX() - caseArrivee.getX();
 	
 				int resultat = (Math.abs(deplacementColonne)) * (Math.abs(deplacementLigne));
 	
@@ -56,14 +56,22 @@ public class Partie
 
 	public boolean isPremierDeplacementPion(Case caseDepart)
 	{
-		Piece isPion = caseDepart.getPiece();
+		Piece piece = caseDepart.getPiece();
+		final int ligneDepartNoir = 1;
+		final int ligneDepartBlancs = 6;
 	
-		if (isPion instanceof Pion)
+		if (piece instanceof Pion)
 		{
-			if((caseDepart.getY() == 1 && (isPion.getCouleur() == EnumCouleurs.NOIR || ((caseDepart.getY() == 6  && (isPion.getCouleur() == EnumCouleurs.BLANC))))))
+			if (piece.getCouleur() == EnumCouleurs.NOIR && caseDepart.getY() == ligneDepartNoir)
 			{
 				return true;
 			}
+			
+			else if (piece.getCouleur() == EnumCouleurs.BLANC && caseDepart.getY() == ligneDepartBlancs)
+			{
+				return true;
+			}
+			
 			else
 			{
 				return false;
@@ -92,69 +100,69 @@ public class Partie
 			couleurArrivee = caseArrivee.getPiece().getCouleur();
 		}
 	
-		if(!(caseArrivee.caseOccupee()) || couleurDepart != couleurArrivee)
+		if (!(caseArrivee.caseOccupee()) || couleurDepart != couleurArrivee)
 		{
-			if(!(pieceDepart instanceof Cavalier))
+			if (!(pieceDepart instanceof Cavalier))
 			{
 				final int ligneDepart = caseDepart.getX();
 				final int ligneArrivee = caseArrivee.getX();
 				final int colonneDepart = caseDepart.getY();
 				final int colonneArrivee = caseArrivee.getY();
 				
-				if(!(pieceDepart instanceof Pion))
+				if (!(pieceDepart instanceof Pion))
 				{
-					if(ligneDepart == ligneArrivee && colonneDepart < colonneArrivee)
+					if (ligneDepart == ligneArrivee && colonneDepart < colonneArrivee)
 					{
-						for(int i=colonneDepart+1;i<=colonneArrivee;i++)
+						for (int i=colonneDepart + 1; i < colonneArrivee; i++)
 						{
-							if(this.echiquierPartie.getCase(ligneDepart,i).caseOccupee())
+							if(this.echiquierPartie.getCase(ligneDepart, i).caseOccupee())
 							{
 								return false;
 							}
 						}
 					}
 	
-					if(ligneDepart == ligneArrivee && colonneDepart > colonneArrivee)
+					if (ligneDepart == ligneArrivee && colonneDepart > colonneArrivee)
 					{
-						for(int i=colonneDepart-1;i>=colonneArrivee;i--)
+						for (int i = colonneDepart - 1; i > colonneArrivee; i--)
 						{
-							if(this.echiquierPartie.getCase(ligneDepart,i).caseOccupee())
+							if (this.echiquierPartie.getCase(ligneDepart, i).caseOccupee() || couleurDepart != couleurArrivee)
 							{
 								return false;
 							}
 						}
 					}
 	
-					if(colonneDepart == colonneArrivee && ligneDepart < ligneArrivee)
+					if (colonneDepart == colonneArrivee && ligneDepart < ligneArrivee)
 					{
-						for(int i=ligneDepart+1;i<=ligneArrivee;i++)
+						for (int i = ligneDepart + 1; i < ligneArrivee; i++)
 						{
-							if(this.echiquierPartie.getCase(ligneDepart,i).caseOccupee())
+							if(this.echiquierPartie.getCase(ligneDepart, i).caseOccupee())
 							{
 								return false;
 							}
 						}
 					}
 	
-					if(colonneDepart == colonneArrivee && ligneDepart > ligneArrivee)
+					if (colonneDepart == colonneArrivee && ligneDepart > ligneArrivee)
 					{
-						for(int i=ligneDepart-1;i>=ligneArrivee;i--)
+						for (int i = ligneDepart - 1; i > ligneArrivee; i--)
 						{
-							if(this.echiquierPartie.getCase(ligneDepart,i).caseOccupee())
+							if(this.echiquierPartie.getCase(ligneDepart, i).caseOccupee())
 							{
 								return false;
 							}
 						}
 					}
 	
-					if(ligneArrivee<ligneDepart && colonneArrivee<colonneDepart)
+					if (ligneArrivee < ligneDepart && colonneArrivee < colonneDepart)
 					{
-						int i = ligneDepart-1;
-						int j = colonneDepart-1;
+						int i = ligneDepart - 1;
+						int j = colonneDepart - 1;
 	
-						while(i>=ligneArrivee && j>colonneArrivee)
+						while (i > ligneArrivee && j > colonneArrivee)
 						{
-							if(this.echiquierPartie.getCase(i,j).caseOccupee())
+							if (this.echiquierPartie.getCase(i, j).caseOccupee())
 							{
 								return false;
 							}
@@ -163,14 +171,14 @@ public class Partie
 						}
 					}
 	
-					if(ligneArrivee<ligneDepart && colonneArrivee>colonneDepart)
+					if (ligneArrivee < ligneDepart && colonneArrivee > colonneDepart)
 					{
-						int i = ligneDepart-1;
-						int j = colonneDepart+1;
+						int i = ligneDepart - 1;
+						int j = colonneDepart + 1;
 	
-						while(i>=ligneArrivee && j<colonneArrivee)
+						while(i > ligneArrivee && j < colonneArrivee)
 						{
-							if(this.echiquierPartie.getCase(i,j).caseOccupee())
+							if (this.echiquierPartie.getCase(i, j).caseOccupee())
 							{
 								return false;
 							}
@@ -179,14 +187,14 @@ public class Partie
 						}
 					}
 	
-					if(ligneArrivee>ligneDepart && colonneArrivee<colonneDepart)
+					if (ligneArrivee > ligneDepart && colonneArrivee < colonneDepart)
 					{
-						int i = ligneDepart+1;
-						int j = colonneDepart-1;
+						int i = ligneDepart + 1;
+						int j = colonneDepart - 1;
 	
-						while(i<=ligneArrivee && j>colonneArrivee)
+						while (i < ligneArrivee && j > colonneArrivee)
 						{
-							if(this.echiquierPartie.getCase(i,j).caseOccupee())
+							if (this.echiquierPartie.getCase(i, j).caseOccupee())
 							{
 								return false;
 							}
@@ -195,14 +203,14 @@ public class Partie
 						}
 					}
 	
-					if(ligneArrivee>ligneDepart && colonneArrivee>colonneDepart)
+					if (ligneArrivee > ligneDepart && colonneArrivee > colonneDepart)
 					{
-						int i = ligneDepart+1;
-						int j = colonneDepart+1;
+						int i = ligneDepart + 1;
+						int j = colonneDepart + 1;
 	
-						while(i<=ligneArrivee && j<colonneArrivee)
+						while(i < ligneArrivee && j < colonneArrivee)
 						{
-							if(this.echiquierPartie.getCase(i,j).caseOccupee())
+							if (this.echiquierPartie.getCase(i, j).caseOccupee())
 							{
 								return false;
 							}
@@ -213,7 +221,7 @@ public class Partie
 				}
 				else
 				{
-					if(this.echiquierPartie.getCase(ligneArrivee,colonneArrivee).caseOccupee())
+					if(this.echiquierPartie.getCase(ligneArrivee, colonneArrivee).caseOccupee())
 					{
 						return false;
 					}
@@ -237,19 +245,10 @@ public class Partie
 		return true;
 	}
 	
-	ArrayList<Case> obtenirPositionPiecesAdverses(EnumCouleurs couleurJoueur)
+	public ArrayList<Case> obtenirPositionPiecesAdverses(EnumCouleurs couleurJoueur)
 	{
 		ArrayList<Case> result = new ArrayList<Case>();
-		EnumCouleurs couleurAdverse = null;
-		
-		if (couleurJoueur == EnumCouleurs.BLANC)
-		{
-			couleurAdverse = EnumCouleurs.NOIR;
-		}
-		else
-		{
-			couleurAdverse = EnumCouleurs.BLANC;
-		}
+		EnumCouleurs couleurAdverse = EnumCouleurs.getOpposite(couleurJoueur);
 		
 		for (int i = 0; i < Echiquier.Abscisses.size(); ++i)
 		{
@@ -268,25 +267,88 @@ public class Partie
 		return result;
 	}
 	
-	public Case getPositionKing(EnumCouleurs couleur)
+	public Case getPositionRoi(EnumCouleurs couleur)
 	{
-		Case caseKing = null;
+		Case caseRoi = null;
+		
 		int i = 0;
-		int j = 0;
-	 
-		while(caseKing==null)
+		while (caseRoi == null && i < Echiquier.Abscisses.size())
 		{
-			Piece pieceTemp = echiquierPartie.getCase(i,j).getPiece();
-	  
-			if (pieceTemp instanceof Roi && pieceTemp.getCouleur() == couleur)
+			int j = 0;
+			while (j < Echiquier.Ordonnees.size())
 			{
-				caseKing = new Case(i,j);
+				Piece pieceTemp = this.echiquierPartie.getCase(i, j).getPiece();
+				if ((pieceTemp instanceof Roi) && (pieceTemp.getCouleur() == couleur))
+				{
+					caseRoi = new Case(i, j);
+				}
+				
+				++j;
 			}
-	  
-			i++;
-			j++;
+			
+			++i;
 		}
 		
-		return caseKing;
+		return caseRoi;
+	}
+	
+	public boolean isEchec(EnumCouleurs couleurRoi)
+	{
+		Case caseRoi = this.getPositionRoi(couleurRoi);
+		boolean result = false;
+		int i = 0;
+		
+		ArrayList<Case> piecesAdverses = this.obtenirPositionPiecesAdverses(couleurRoi);
+	 
+		while (i < piecesAdverses.size() && !result)
+		{
+			Case casePiece = piecesAdverses.get(i);
+			Piece piece = casePiece.getPiece();
+			
+			if (piece.deplacementPossible(casePiece, caseRoi) && this.deplacementNonGene(casePiece, caseRoi))
+			{
+				result = true;
+			}
+			else
+			{
+				++i;
+			}
+		}
+		
+		return result;
+	}
+	
+	public boolean isEchecEtmat(EnumCouleurs couleur)
+	{
+		int nbEchec = 0;
+		Piece roi = new Roi(couleur);
+		Case caseKing = this.getPositionRoi(couleur);
+
+		for(int x = -1; x<=1; x++)
+		{	
+			for(int y = -1; y<=1; y++)
+			{
+				if(caseKing.getX()+x>=0 && caseKing.getX()+x<=7 && caseKing.getY()+y>=0 && caseKing.getY()+y<=7)
+				{
+					int xKingInter = caseKing.getX()+x;
+					int yKingInter = caseKing.getY()+y;
+					if(this.echiquierPartie.getCase(xKingInter, yKingInter).getPiece() == null)
+					{
+						Case caseKingInter = new Case(xKingInter, yKingInter, roi);
+						this.echiquierPartie.setCase(caseKingInter);
+
+						if(this.isEchec(couleur))
+						{
+							nbEchec++;
+						}
+						Case caseReplace = new Case(xKingInter, yKingInter, null);
+						this.echiquierPartie.setCase(caseReplace);
+					}
+				}
+
+			}
+		}
+
+		return nbEchec == 8;
 	}
 }

@@ -97,6 +97,14 @@ public class Joueur
 	{
 		return this.getNom();	
 	}
+	
+	public void initialiserJoueur()
+	{
+		Scanner sc = new Scanner(System.in);
+	
+		System.out.println("Entrez votre nom : ");
+		this.nom = sc.nextLine();
+	}
 
 	public String getNom()
 	{
