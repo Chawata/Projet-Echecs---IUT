@@ -340,7 +340,7 @@ public class Partie
 					if (x != 0 || y != 0)
 					{
 						++nbDeplacement;
-						if(caseKing.getX() + x >= 0 && caseKing.getX() + x <= 7 && caseKing.getY() + y >= 0 && caseKing.getY() + y <= 7)
+						if (caseKing.getX() + x >= 0 && caseKing.getX() + x <= 7 && caseKing.getY() + y >= 0 && caseKing.getY() + y <= 7)
 						{
 							int xKingInter = caseKing.getX() + x;
 							int yKingInter = caseKing.getY() + y;
@@ -352,7 +352,7 @@ public class Partie
 								Case caseKingInter = new Case(xKingInter, yKingInter, roi);
 								this.echiquierPartie.setCase(caseKingInter);
 	
-								if(this.isEchec(couleur))
+								if (this.isEchec(couleur))
 								{
 									nbEchec++;
 								}
