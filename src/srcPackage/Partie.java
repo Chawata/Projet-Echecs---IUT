@@ -113,7 +113,7 @@ public class Partie
 				{
 					if (ligneDepart == ligneArrivee && colonneDepart < colonneArrivee)
 					{
-						for (int i=colonneDepart + 1; i < colonneArrivee; i++)
+						for (int i = colonneDepart + 1; i < colonneArrivee; i++)
 						{
 							if(this.echiquierPartie.getCase(ligneDepart, i).caseOccupee())
 							{
@@ -126,7 +126,7 @@ public class Partie
 					{
 						for (int i = colonneDepart - 1; i > colonneArrivee; i--)
 						{
-							if (this.echiquierPartie.getCase(ligneDepart, i).caseOccupee() || couleurDepart != couleurArrivee)
+							if (this.echiquierPartie.getCase(ligneDepart, i).caseOccupee())
 							{
 								return false;
 							}
@@ -280,7 +280,7 @@ public class Partie
 				Piece pieceTemp = this.echiquierPartie.getCase(i, j).getPiece();
 				if ((pieceTemp instanceof Roi) && (pieceTemp.getCouleur() == couleur))
 				{
-					caseRoi = new Case(i, j);
+					caseRoi = new Case(i, j, pieceTemp);
 				}
 				
 				++j;
