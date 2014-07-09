@@ -323,26 +323,33 @@ public class Partie
 		int nbEchec = 0;
 		Piece roi = new Roi(couleur);
 		Case caseKing = this.getPositionRoi(couleur);
-
+		
 		for(int x = -1; x<=1; x++)
 		{	
 			for(int y = -1; y<=1; y++)
 			{
-				if(caseKing.getX()+x>=0 && caseKing.getX()+x<=7 && caseKing.getY()+y>=0 && caseKing.getY()+y<=7)
+				if(caseKing.getX() + x >= 0 && caseKing.getX() + x <= 7 && caseKing.getY() + y >= 0 && caseKing.getY() + y <= 7)
 				{
-					int xKingInter = caseKing.getX()+x;
-					int yKingInter = caseKing.getY()+y;
-					if(this.echiquierPartie.getCase(xKingInter, yKingInter).getPiece() == null)
+					int xKingInter = caseKing.getX() + x;
+					int yKingInter = caseKing.getY() + y;
+					
+					Piece tempPiece = this.echiquierPartie.getCase(xKingInter, yKingInter).getPiece();
+					
+					if (tempPiece == null || tempPiece.getCouleur() == couleur)
 					{
-						Case caseKingInter = new Case(xKingInter, yKingInter, roi);
-						this.echiquierPartie.setCase(caseKingInter);
-
-						if(this.isEchec(couleur))
+						if (x != 0 && y != 0)
 						{
-							nbEchec++;
+							Case caseKingInter = new Case(xKingInter, yKingInter, roi);
+							this.echiquierPartie.setCase(caseKingInter);
+
+							if(this.isEchec(couleur))
+							{
+								nbEchec++;
+							}
+							
+							Case caseReplace = new Case(xKingInter, yKingInter, null);
+							this.echiquierPartie.setCase(caseReplace);
 						}
-						Case caseReplace = new Case(xKingInter, yKingInter, null);
-						this.echiquierPartie.setCase(caseReplace);
 					}
 				}
 

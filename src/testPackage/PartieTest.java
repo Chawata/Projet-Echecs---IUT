@@ -254,4 +254,40 @@ public class PartieTest
 
 		 assertTrue("With FB at (4;2), DB at (2;1) and TB at (1;0) and (0;6), RN at (3;0) is dead", p.isEchecEtmat(couleurRoi));
 	}
+	
+	/*@Test
+	 public void testIsEchecEtmat()
+	 {
+	   EnumCouleurs couleurRoi = EnumCouleurs.NOIR;
+	   EnumCouleurs couleurEnnemis = EnumCouleurs.getOpposite(couleurRoi);
+
+	   Piece fou = new Fou(couleurEnnemis);
+	   Piece reine = new Reine(couleurEnnemis);
+	   Piece tour = new Tour(couleurEnnemis);
+	   Piece tour2 = new Tour(couleurEnnemis);
+	   Piece pion = new Pion(couleurEnnemis);
+	   Piece roi = new Roi(couleurRoi);
+	   Piece fou2 = new Fou(couleurRoi);
+
+	   Case caseFou = new Case(3, 5, fou);
+	   Case caseReine = new Case(3, 2, reine);
+	   Case caseTour = new Case(1, 0, tour);
+	   Case caseTour2 = new Case(0, 6, tour2);
+	   Case caseRoi = new Case(1, 3, roi);
+	   Case casePion = new Case(2, 5, pion);
+	   Case caseFou2 = new Case(2, 4, fou2); 
+	   
+	   Echiquier e = new Echiquier();
+	   e.setCase(caseFou);
+	   e.setCase(caseReine);
+	   e.setCase(caseTour);
+	   e.setCase(caseTour2);
+	   e.setCase(casePion);
+	   e.setCase(caseRoi);
+	   e.setCase(caseFou2);
+	   
+	   Partie p = new Partie(e);
+
+	   assertTrue("With FB at (4;2), DB at (2;1) and TB at (1;0) and (0;6), RN at (3;0) is dead", p.isEchecEtmat(couleurRoi));
+	 }*/
 }
