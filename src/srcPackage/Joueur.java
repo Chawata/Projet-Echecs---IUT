@@ -13,7 +13,7 @@ public class Joueur
 	 * Méthode qui demande et retourne les coordonnées (x ; y) et qui vérifie qu'elles sont valides.
 	 * @return Un tableau de 2 int, respecivement x et y.
 	 */
-	private int[] obtenirCooredonnees()
+	private int[] obtenirCoordonnees()
 	{
 		Scanner scanner = new Scanner(System.in);
 		boolean isLineValid = false, isColumnValid = false;
@@ -21,14 +21,15 @@ public class Joueur
 		
 		while (!isLineValid || !isColumnValid)
 		{
-			String input = scanner.nextLine().substring(0, 2);
+			String temp = scanner.nextLine();
 			// La chaîne ne doit faire que deux caractères, car l'entrée sera toujours de type "[A-H][1-8]".
-			if (input.length() == 2)
+			if (temp.length() == 2)
 			{
+				String input = temp.substring(0, 2);
 				if (!isLineValid)
 				{
 					x = input.substring(0, 1);
-					if (Echiquier.Abscisses.contains(x))
+					if (Echiquier.Ordonnees.contains(x))
 					{
 						isLineValid = true;
 					}
@@ -41,7 +42,7 @@ public class Joueur
 				if (!isColumnValid)
 				{
 					y = input.substring(1, 2);
-					if (Echiquier.Ordonnees.contains(y))
+					if (Echiquier.Abscisses.contains(y))
 					{
 						isColumnValid = true;
 					}
@@ -57,13 +58,15 @@ public class Joueur
 			}
 		}
 		
-		scanner.close();
-		
 		int[] coordonnees = new int[2];
-		coordonnees[0] = Echiquier.Abscisses.indexOf(x);
-		coordonnees[1] = Echiquier.Ordonnees.indexOf(y);
-		
+		coordonnees[0] = Echiquier.Ordonnees.indexOf(x);
+		coordonnees[1] = Echiquier.Abscisses.indexOf(y);
 		return coordonnees;
+	}
+	
+	public Joueur()
+	{
+		this.nom = null;
 	}
 	
 	public Joueur(String nomJoueur)
@@ -78,7 +81,7 @@ public class Joueur
 	public Case saisirCaseDepart()
 	{
 		System.out.println("Saisissez la case sur laquelle se trouve la pièce que vous souhaitez déplacer (ligne puis colonne) : ");
-		int[] coordonneesDepart = this.obtenirCooredonnees();
+		int[] coordonneesDepart = this.obtenirCoordonnees();
 		return new Case(coordonneesDepart[0], coordonneesDepart[1]);
 	}
 
@@ -89,7 +92,7 @@ public class Joueur
 	public Case saisirCaseArrivee()
 	{
 		System.out.println("Saisissez la case sur laquelle vous souhaitez déplacer votre pièce (ligne puis colonne) : ");
-		int[] coordonneesArrivee = this.obtenirCooredonnees();
+		int[] coordonneesArrivee = this.obtenirCoordonnees();
 		return new Case(coordonneesArrivee[0], coordonneesArrivee[1]);
 	}
 
@@ -98,12 +101,29 @@ public class Joueur
 		return this.getNom();	
 	}
 	
+	public boolean equals(Object o)
+	{
+		if (o == null)
+		{
+			return false;
+		}
+		
+		if (!(o instanceof Joueur))
+		{
+			return false;
+		}
+		
+		Joueur j = (Joueur)o;
+		return this.getNom().equals(j.getNom());
+	}
+	
 	public void initialiserJoueur()
 	{
 		Scanner sc = new Scanner(System.in);
 	
-		System.out.println("Entrez votre nom : ");
-		this.nom = sc.nextLine();
+		System.out.println("\tEntrez votre nom : ");
+		String name = sc.nextLine();
+		this.nom = new String(name);
 	}
 
 	public String getNom()

@@ -23,7 +23,18 @@ public class Reine extends Piece
 	 * @param caseArrivee Case où l'on veut déplacer la Reine sélectionnée.
 	 */
 	public boolean deplacementPossible(Case caseDepart, Case caseArrivee)    
-	{        
+	{
+		
+		if (caseDepart == null)
+		{
+			System.out.println("caseDepart");
+		}
+		if (caseArrivee == null)	
+		{
+			System.out.println("caseArrivee");
+		}
+		
+		
 		int deplacementcolonne = caseDepart.getY() - caseArrivee.getY();
 		int deplacementligne = caseDepart.getX() - caseArrivee.getX();
 		

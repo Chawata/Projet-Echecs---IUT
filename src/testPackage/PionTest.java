@@ -15,9 +15,9 @@ public class PionTest
 	public void testDeplacementPossible()
 	{
 		Piece pion = new Pion(EnumCouleurs.BLANC);
-		Case caseDepart = new Case(0, 6, pion);
+		Case caseDepart = new Case(6, 1, pion);
 		
-		assertTrue("If P is at (0;6), he can goes to (0;5)", pion.deplacementPossible(caseDepart, new Case(0, 5)));
+		assertTrue("If P is at (0;6), he can goes to (0;5)", pion.deplacementPossible(caseDepart, new Case(5, 1)));
 		assertFalse("If P is at (0;6), he can't goes to (0;4)", pion.deplacementPossible(caseDepart, new Case(0, 4)));
 		assertFalse("If P is at (0;6), he can't goes to (1;5)", pion.deplacementPossible(caseDepart, new Case(1, 5)));
 	}

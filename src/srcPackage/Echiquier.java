@@ -11,8 +11,9 @@ import java.util.Arrays;
 
 public class Echiquier
 {
-	public static final List<String> Abscisses = Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H");
-	public static final List<String> Ordonnees = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8");
+	public static final List<String> Abscisses = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8");
+	public static final List<String> Ordonnees = Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H");
+	
 	private static final int N = 8;
 	
 	private Case[][] tabCase; 
@@ -35,11 +36,11 @@ public class Echiquier
 
 	public String toString()
 	{
-		String result = " ";
+		String result = "   ";
 		
 		for(int i = 0; i < Echiquier.Abscisses.size(); i++)
 		{
-			result = result + "  "  + Echiquier.Abscisses.get(i); 
+			result = result + " "  + Echiquier.Abscisses.get(i) + "  "; 
 		}
 		result = result + "\n";
 		
@@ -72,32 +73,31 @@ public class Echiquier
 	 */
 	public void initialiserEchiquier()
 	{
-		final int ligneNoirPion = 1;
+		final int ligneNoirePion = 1;
 	 	final int ligneBlanchePion = 6;
-	 	final int ligneNoir = 0;
+	 	final int ligneNoire = 0;
 	 	final int ligneBlanche = 7;
-	 	
 	 	
 	 	for(int i = 0; i < Echiquier.Abscisses.size(); i++)
 	 	{
-	 		this.tabCase[ligneNoirPion][i].setPiece(new Pion(EnumCouleurs.NOIR));
+	 		this.tabCase[ligneNoirePion][i].setPiece(new Pion(EnumCouleurs.NOIR));
 	 		this.tabCase[ligneBlanchePion][i].setPiece(new Pion(EnumCouleurs.BLANC)); 
 	 	}
 	 	
-	 	this.tabCase[ligneNoir][0].setPiece(new Tour(EnumCouleurs.NOIR));
-	 	this.tabCase[ligneNoir][1].setPiece(new Cavalier(EnumCouleurs.NOIR));
-	 	this.tabCase[ligneNoir][2].setPiece(new Fou(EnumCouleurs.NOIR));
-	 	this.tabCase[ligneNoir][3].setPiece(new Roi(EnumCouleurs.NOIR));
-	 	this.tabCase[ligneNoir][4].setPiece(new Reine(EnumCouleurs.NOIR));
-	 	this.tabCase[ligneNoir][5].setPiece(new Fou(EnumCouleurs.NOIR));
-	 	this.tabCase[ligneNoir][6].setPiece(new Cavalier(EnumCouleurs.NOIR));
-	 	this.tabCase[ligneNoir][7].setPiece(new Tour(EnumCouleurs.NOIR));
+	 	this.tabCase[ligneNoire][0].setPiece(new Tour(EnumCouleurs.NOIR));
+	 	this.tabCase[ligneNoire][1].setPiece(new Cavalier(EnumCouleurs.NOIR));
+	 	this.tabCase[ligneNoire][2].setPiece(new Fou(EnumCouleurs.NOIR));
+	 	this.tabCase[ligneNoire][3].setPiece(new Reine(EnumCouleurs.NOIR));
+	 	this.tabCase[ligneNoire][4].setPiece(new Roi(EnumCouleurs.NOIR));
+	 	this.tabCase[ligneNoire][5].setPiece(new Fou(EnumCouleurs.NOIR));
+	 	this.tabCase[ligneNoire][6].setPiece(new Cavalier(EnumCouleurs.NOIR));
+	 	this.tabCase[ligneNoire][7].setPiece(new Tour(EnumCouleurs.NOIR));
 	 	
 	 	this.tabCase[ligneBlanche][0].setPiece(new Tour(EnumCouleurs.BLANC));
 	 	this.tabCase[ligneBlanche][1].setPiece(new Cavalier(EnumCouleurs.BLANC));
 	 	this.tabCase[ligneBlanche][2].setPiece(new Fou(EnumCouleurs.BLANC));
-	 	this.tabCase[ligneBlanche][3].setPiece(new Roi(EnumCouleurs.BLANC));
-	 	this.tabCase[ligneBlanche][4].setPiece(new Reine(EnumCouleurs.BLANC));
+	 	this.tabCase[ligneBlanche][3].setPiece(new Reine(EnumCouleurs.BLANC));
+	 	this.tabCase[ligneBlanche][4].setPiece(new Roi(EnumCouleurs.BLANC));
 	 	this.tabCase[ligneBlanche][5].setPiece(new Fou(EnumCouleurs.BLANC));
 	 	this.tabCase[ligneBlanche][6].setPiece(new Cavalier(EnumCouleurs.BLANC));
 	 	this.tabCase[ligneBlanche][7].setPiece(new Tour(EnumCouleurs.BLANC));

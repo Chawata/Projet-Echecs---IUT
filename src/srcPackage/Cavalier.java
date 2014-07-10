@@ -25,10 +25,15 @@ public class Cavalier extends Piece
 	 */
 	public boolean deplacementPossible(Case caseDepart, Case caseArrivee)    
 	{
-		int deplacementcolonne = caseDepart.getY() - caseArrivee.getY();
-		int deplacementligne = caseDepart.getX() - caseArrivee.getX();
+		double deplacementColonne = caseDepart.getY() - caseArrivee.getY();
+		double deplacementLigne = caseDepart.getX() - caseArrivee.getX();
 
-		int resultat = Math.abs(deplacementcolonne) / Math.abs(deplacementligne);
+		double resultat = Math.abs(deplacementColonne) / Math.abs(deplacementLigne);
+		
+		if (deplacementColonne > 2 || deplacementLigne > 2)
+		{
+			return false;
+		}
 		
 		return (resultat == 2) || (resultat == 0.5);
 	}

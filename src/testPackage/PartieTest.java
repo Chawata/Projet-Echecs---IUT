@@ -288,7 +288,7 @@ public class PartieTest
 	   
 	  	Partie p = new Partie(e);
 
-	  	assertTrue("With FB at (4;2), DB at (2;1) and TB at (1;0) and (0;6), RN at (3;0) is dead", p.isEchecEtmat(couleurRoi));
+	  	assertTrue("With FB at (3;5), DB at (3;2), TB at (1;0) and (0;6) and PB at (2;5) and even with FN at (2;4), RN at (3;0) is dead", p.isEchecEtmat(couleurRoi));
 	}
 	
 	@Test
@@ -327,7 +327,63 @@ public class PartieTest
 	  
 	    Partie p = new Partie(e);
 
-	    assertTrue("With FB at (4;2), DB at (2;1) and TB at (1;0) and (0;6), RN at (3;0) is dead", p.isEchecEtmat(couleurRoi));
-	 }
+	    assertTrue("With FB at (3;5), DB at (3;2), TB at (1;0) and (0;6) and PB at (2;5) and even with FN at (2;4) and (2;2), RN at (3;0) is dead", p.isEchecEtmat(couleurRoi));
+	}
 	
+	@Test
+	public void testIsEchecEtmatRoiCoinEchiquier()
+	{
+		EnumCouleurs couleurRoi = EnumCouleurs.NOIR;
+		EnumCouleurs couleurEnnemis = EnumCouleurs.getOpposite(couleurRoi);
+		
+		Piece fou = new Fou(couleurEnnemis);
+		Piece reine = new Reine(couleurEnnemis);
+		Piece tour = new Tour(couleurEnnemis);
+		Piece roi = new Roi(couleurRoi);
+		
+		Case caseFou = new Case(2, 2, fou);
+		Case caseReine = new Case(2, 0, reine);
+		Case caseTour = new Case(0, 2, tour);
+		Case caseRoi = new Case(0, 0, roi);
+		
+		Echiquier e = new Echiquier();
+		e.setCase(caseFou);
+	    e.setCase(caseReine);
+	    e.setCase(caseTour);
+	    e.setCase(caseRoi);
+	    
+	    Partie p = new Partie(e);
+
+	    assertTrue("With FB at (2;2), DB at (2;0) and TB at (0;2), RN at (0;0) is dead", p.isEchecEtmat(couleurRoi));
+	}
+	
+	@Test
+	public void testIsEchecEtMatJeuDepart()
+	{
+		EnumCouleurs couleurRoi = EnumCouleurs.NOIR;
+		EnumCouleurs couleurEnnemis = EnumCouleurs.getOpposite(couleurRoi);
+		
+		Echiquier e = new Echiquier();
+		e.initialiserEchiquier();
+		
+		Partie p = new Partie(e);
+		assertFalse("With start game, RN can't be dead", p.isEchecEtmat(couleurRoi));
+	}
+	
+	@Test
+	public void testIsEchecEtMatJeuDepartMouvementPionBlanc()
+	{
+		EnumCouleurs couleurRoi = EnumCouleurs.NOIR;
+		EnumCouleurs couleurEnnemis = EnumCouleurs.getOpposite(couleurRoi);
+		
+		Echiquier e = new Echiquier();
+		e.initialiserEchiquier();
+		
+		Piece c = e.getCase(6, 1).getPiece();
+		e.setCase(new Case(6, 1, null));
+		e.setCase(new Case(5, 1, c));
+		
+		Partie p = new Partie(e);
+		assertFalse("With start game and PB at (5;1), RN can't be dead", p.isEchecEtmat(couleurRoi));
+	}
 }
