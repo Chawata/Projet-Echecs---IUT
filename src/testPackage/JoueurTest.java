@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import srcPackage.Case;
 import srcPackage.Joueur;
 
 public class JoueurTest

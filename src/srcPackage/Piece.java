@@ -21,6 +21,7 @@ public abstract class Piece
         return this.couleur;
     }
     
+    @Override
     public String toString()
     { 
         return this.getCouleur().toString();

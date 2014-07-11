@@ -1,3 +1,12 @@
+/**
+ * Classe principale qui se contente d'afficher le menu et de lancer une partie.
+ * @author Ben Vittupier
+ */
+
+/*
+ * TODO : menu + charger partie
+ */
+
 package srcPackage;
 
 public class Jeu

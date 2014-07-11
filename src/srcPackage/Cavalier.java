@@ -23,6 +23,7 @@ public class Cavalier extends Piece
 	 * @param caseDepart La case où est situé le cavalier à bouger.
 	 * @param caseArrivee La case où l'on souhaite déplacer le cavalier.
 	 */
+	@Override
 	public boolean deplacementPossible(Case caseDepart, Case caseArrivee)    
 	{
 		double deplacementColonne = caseDepart.getY() - caseArrivee.getY();
@@ -38,6 +39,7 @@ public class Cavalier extends Piece
 		return (resultat == 2) || (resultat == 0.5);
 	}
 
+	@Override
 	public String toString()    
 	{        
 		return "C" + super.toString();    

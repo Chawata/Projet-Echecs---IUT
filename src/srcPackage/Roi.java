@@ -23,6 +23,7 @@ public class Roi extends Piece
 	 * @param caseDepart Case qui contient le Roi à déplacer.
 	 * @param caseArrivee Case où l'on veut déplacer le Roi sélectionné.
 	 */
+	@Override
 	public boolean deplacementPossible(Case caseDepart, Case caseArrivee)    
 	{
 		ArrayList<Case> casesPossibles = new ArrayList<Case>();
@@ -44,6 +45,7 @@ public class Roi extends Piece
 		return casesPossibles.contains(caseArrivee);
 	}        
 
+	@Override
 	public String toString()    
 	{        
 		return "R" + super.toString();    

@@ -1,3 +1,9 @@
+/**
+ * Classe de test la plus importante puisque elle effectue des tests unitaires sur les méthodes de la classe Partie.
+ * @author Ben Vittupier
+ * @version 1.0
+ */
+
 package testPackage;
 
 import static org.junit.Assert.*;
@@ -19,6 +25,9 @@ import srcPackage.Tour;
 
 public class PartieTest
 {
+	/**
+	 * Cette méthode teste si le déplacement d'un fou blanc est gêné par d'autres pièces de sa couleur.
+	 */
 	@Test
 	public void testDeplacementNonGenePiecesMemeCouleurs()
 	{
@@ -41,6 +50,9 @@ public class PartieTest
 		assertFalse("If FB is at (2;3), he can't goes to (5;6) because there is FB at (3;4) and PB at (4;5)", p.deplacementNonGene(caseDepart, caseArrivee));
 	}
 	
+	/**
+	 * Cette méthode teste le déplacement d'un fou sur une case vide, avec toutes les cases intermédiaires vides.
+	 */
 	@Test
 	public void testDeplacementNonGeneCasesAdjacentesVides()
 	{
@@ -62,6 +74,9 @@ public class PartieTest
 		assertTrue("If F is at (2;3), he can goes to (5;6) because (3;4) and (4;5) are empty", p.deplacementNonGene(caseDepart, caseInter2));
 	}
 	
+	/**
+	 * Cette méthode teste si un fou blanc peut se déplacer sur une case contenant un pion noir, avec toutes les cases intermédiaires vides.
+	 */
 	@Test
 	public void testDeplacementNonGenePieceAdverseSurDestination()
 	{
@@ -84,6 +99,9 @@ public class PartieTest
 		assertTrue("If FB is at (2;3), he can goes to (5;6) because (3;4) and (4;5) are empty and (5;6) is other color.", p.deplacementNonGene(caseDepart, caseArrivee));
 	}
 	
+	/**
+	 * Cette méthode teste si un fou blanc peut se déplacer sur une case contenant un pion blanc, avec toutes les cases intermédiaires vides.
+	 */
 	@Test
 	public void testDeplacementNonGenePieceAllieeSurDestination()
 	{
@@ -106,6 +124,9 @@ public class PartieTest
 		assertFalse("If FB is at (2;3), he can't goes to (5;6) because there is PB", p.deplacementNonGene(caseDepart, caseArrivee));
 	}
 	
+	/**
+	 * Cette fonction teste si un pion blanc peut prendre un pion adverse (doit renvoyer true) et un pion allié (doit renvoyer false).
+	 */
 	@Test
 	public void testPionPeutPrendre()
 	{
@@ -128,16 +149,19 @@ public class PartieTest
 		assertFalse("If PB is at (3;4), he can't eat PB at (4;3)", p.pionPeutPrendre(casePionPrincipal, casePionAllie));
 	}
 	
+	/**
+	 * Cette fonction teste si le pion sélectionné peut avancer de deux cases (si c'est son premier déplacement) ou non.
+	 */
 	@Test
 	public void testIsPremierDeplacementPion()
 	{
 		Piece pionBlanc = new Pion(EnumCouleurs.BLANC);
 		Piece pionNoir = new Pion(EnumCouleurs.NOIR);
 		
-		Case goodBlanc = new Case(1, 6, pionBlanc);
+		Case goodBlanc = new Case(6, 1, pionBlanc);
 		Case failBlanc = new Case(1, 5, pionBlanc);
 		Case goodNoir = new Case(1, 1, pionNoir);
-		Case failNoir = new Case(1, 2, pionNoir);
+		Case failNoir = new Case(2, 1, pionNoir);
 		
 		Echiquier e = new Echiquier();
 		e.setCase(goodBlanc);
@@ -153,6 +177,9 @@ public class PartieTest
 		assertFalse("If PN is at (1;2), it's not his first play and he can't moves by 2", p.isPremierDeplacementPion(failNoir));
 	}
 	
+	/**
+	 * Cette méthode récupère les pièces adverses des blancs (les pièces noires) et vérifie qu'il y en a bien autant que dans le test.
+	 */
 	@Test
 	public void testObtenirPositionsAdversaires()
 	{
@@ -181,6 +208,9 @@ public class PartieTest
 		assertTrue("caseReine must be in ArrayList", casesEnnemis.contains(caseReine));
 	}
 	
+	/**
+	 * Cette fonction récupère la position du roi et vérifie qu'elle est bien identique à celle fixée dans le test.
+	 */
 	@Test
 	public void testPositionRoi()
 	{
@@ -197,6 +227,9 @@ public class PartieTest
 		assertTrue("r.getY() must be equals to 3", p.getPositionRoi(couleurRoi).getY() == 3);
 	}
 	
+	/**
+	 * Teste si le roi noir est en échec à cause du fou blanc, sachant que toutes les cases intermédiaires sont vides.
+	 */
 	@Test
 	public void testIsEchec()
 	{
@@ -222,6 +255,9 @@ public class PartieTest
 		assertTrue("If RN is at (5;6) and FB at (2;3), then R is in danger", p.isEchec(couleurRoi));
 	}
 	
+	/**
+	 * Teste, pour un roi noir seul et une combinaison de pièces blanches, si celui-ci est échec et mat.
+	 */
 	@Test
 	public void testIsEchecEtmatRoiSeul()
 	{
@@ -255,6 +291,9 @@ public class PartieTest
 		 assertTrue("With FB at (4;2), DB at (2;1) and TB at (1;0) and (0;6), RN at (3;0) is dead", p.isEchecEtmat(couleurRoi));
 	}
 	
+	/**
+	 * Teste, pour un roi et un fou noirs et une combinaison de pièces blanches, si celui-ci est échec et mat.
+	 */
 	@Test
 	public void testIsEchecEtmatRoiPlusPieces()
 	{
@@ -291,6 +330,9 @@ public class PartieTest
 	  	assertTrue("With FB at (3;5), DB at (3;2), TB at (1;0) and (0;6) and PB at (2;5) and even with FN at (2;4), RN at (3;0) is dead", p.isEchecEtmat(couleurRoi));
 	}
 	
+	/**
+	 * Teste, pour un roi et deux fous noirs et une combinaison de pièces blanches, si celui-ci est échec et mat.
+	 */
 	@Test
 	public void testIsEchecEtmatRoiPlusPlusPieces()
 	{
@@ -330,6 +372,9 @@ public class PartieTest
 	    assertTrue("With FB at (3;5), DB at (3;2), TB at (1;0) and (0;6) and PB at (2;5) and even with FN at (2;4) and (2;2), RN at (3;0) is dead", p.isEchecEtmat(couleurRoi));
 	}
 	
+	/**
+	 * Teste, pour un roi seul dans un coin de l'échiquier une combinaison de pièces blanches, si celui-ci est échec et mat.
+	 */
 	@Test
 	public void testIsEchecEtmatRoiCoinEchiquier()
 	{
@@ -357,11 +402,13 @@ public class PartieTest
 	    assertTrue("With FB at (2;2), DB at (2;0) and TB at (0;2), RN at (0;0) is dead", p.isEchecEtmat(couleurRoi));
 	}
 	
+	/**
+	 * Teste que la position des pièces au départ du jeu ne mette aucun roi en échec et mat.
+	 */
 	@Test
 	public void testIsEchecEtMatJeuDepart()
 	{
 		EnumCouleurs couleurRoi = EnumCouleurs.NOIR;
-		EnumCouleurs couleurEnnemis = EnumCouleurs.getOpposite(couleurRoi);
 		
 		Echiquier e = new Echiquier();
 		e.initialiserEchiquier();
@@ -370,11 +417,13 @@ public class PartieTest
 		assertFalse("With start game, RN can't be dead", p.isEchecEtmat(couleurRoi));
 	}
 	
+	/**
+	 * Teste que la position des pièces au départ (avec un pion adverse ayant bougé) ne mette aucun roi en échec et mat.
+	 */
 	@Test
 	public void testIsEchecEtMatJeuDepartMouvementPionBlanc()
 	{
 		EnumCouleurs couleurRoi = EnumCouleurs.NOIR;
-		EnumCouleurs couleurEnnemis = EnumCouleurs.getOpposite(couleurRoi);
 		
 		Echiquier e = new Echiquier();
 		e.initialiserEchiquier();

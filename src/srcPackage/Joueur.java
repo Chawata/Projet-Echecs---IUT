@@ -35,7 +35,7 @@ public class Joueur
 					}
 					else
 					{
-						System.out.println("La ligne demand�e est invalide, merci de recommencer.");
+						System.out.println("La ligne demandée est invalide, merci de recommencer.");
 					}
 				}
 				
@@ -48,13 +48,13 @@ public class Joueur
 					}
 					else
 					{
-						System.out.println("La colonne demand�e est invalide, merci de recommencer.");
+						System.out.println("La colonne demandée est invalide, merci de recommencer.");
 					}
 				}
 			}
 			else
 			{
-				System.out.println("Entr�e incorrecte, merci de recommencer.");
+				System.out.println("Entrée incorrecte, merci de recommencer.");
 			}
 		}
 		
@@ -64,11 +64,18 @@ public class Joueur
 		return coordonnees;
 	}
 	
+	/**
+	 * Constructeur par défaut
+	 */
 	public Joueur()
 	{
 		this.nom = null;
 	}
 	
+	/**
+	 * Constructeur qui prend une String en paramètre.
+	 * @param nomJoueur Le nom à donner au joueur
+	 */
 	public Joueur(String nomJoueur)
 	{
 		this.nom = nomJoueur;
@@ -96,11 +103,13 @@ public class Joueur
 		return new Case(coordonneesArrivee[0], coordonneesArrivee[1]);
 	}
 
+	@Override
 	public String toString()
 	{
 		return this.getNom();	
 	}
 	
+	@Override
 	public boolean equals(Object o)
 	{
 		if (o == null)
@@ -117,6 +126,9 @@ public class Joueur
 		return this.getNom().equals(j.getNom());
 	}
 	
+	/**
+	 * Demande le nom du joueur.
+	 */
 	public void initialiserJoueur()
 	{
 		Scanner sc = new Scanner(System.in);
@@ -126,6 +138,10 @@ public class Joueur
 		this.nom = new String(name);
 	}
 
+	/**
+	 * Retourne le nom du joueur.
+	 * @return Le nom du joueur
+	 */
 	public String getNom()
 	{
 		return this.nom;

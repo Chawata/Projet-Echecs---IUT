@@ -1,3 +1,9 @@
+/**
+ * Enumération servant à représenter les couleurs des pièces et des joueurs.
+ * @author Ben Vittupier
+ * @version 1.0
+ */
+
 package srcPackage;
 
 public enum EnumCouleurs
@@ -11,6 +17,7 @@ public enum EnumCouleurs
 		this.name = name;
 	}
 	
+	@Override
 	public String toString()
 	{
 		return this.name;

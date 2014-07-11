@@ -1,3 +1,11 @@
+/**
+ * Classe principale car c'est elle qui fait jouer les tours, vérifie si le roi est en échec ou en échec
+ * et mat, etc.
+ * @author Anne-Sophie Segonds
+ * @author Julien Husch
+ * @author Ben Vittupier
+ */
+
 package srcPackage;
 
 import java.util.ArrayList;
@@ -5,19 +13,15 @@ import java.util.ArrayList;
 public class Partie
 {
     private Echiquier echiquierPartie; 
-    
-    private ArrayList<Case> coupsJoues;
 
     private Joueur[] joueurs;
 
-    //ArrayList<Piece> piece_J1;
-    //ArrayList<Piece> piece_J2;
-    
-    
+    /**
+     * Constructeur par défaut de la classe Partie, qui appelle les constructeurs par défaut de Echiquier et Joueur.
+     */
     public Partie()
     {
     	this.echiquierPartie = new Echiquier();
-    	this.coupsJoues = new ArrayList<Case>();
     	
     	this.joueurs = new Joueur[2];
     	for (int i = 0; i < this.joueurs.length; ++i)
@@ -26,10 +30,14 @@ public class Partie
     	}
     }
     
+    /**
+     * /!\ Méthode à ne pas utiliser en dehors des tests JUNIT ! /!\ 
+     * Constructeur prenant un échiquier en paramètre et faisant appel aux constructeurs par défaut de Joueur.
+     * @param e Un échiquier différent de null
+     */
     public Partie(Echiquier e)
     {
     	this.echiquierPartie = e;
-    	this.coupsJoues = new ArrayList<Case>();
     	
     	this.joueurs = new Joueur[2];
     	for (int i = 0; i < this.joueurs.length; ++i)
@@ -38,6 +46,9 @@ public class Partie
     	}
     }
     
+    /**
+     * Méthode qui initialise l'échiquier et les données sur les joueurs.
+     */
     public void init()
     {
     	this.echiquierPartie.initialiserEchiquier();
@@ -48,6 +59,12 @@ public class Partie
     	}
     }
     
+    /**
+     * Méthode qui vérifie si un pion sur une de départ peut prendre une pièce sur un case d'arrivée.
+     * @param caseDepart Case où se situe un pion. Si celle-ci ne contient pas un pion, elle renvoie false.
+     * @param caseArrivee Case où l'on veut déplacer le pion.
+     * @return false si la case de départ ne contient pas un pion ou si il ne peut pas prendre la pièce sur la case d'arrivée, true sinon
+     */
     public boolean pionPeutPrendre(Case caseDepart, Case caseArrivee)
     {
 		Piece pieceDepart = caseDepart.getPiece();
@@ -76,6 +93,7 @@ public class Partie
 				int deplacementColonne = caseDepart.getY() - caseArrivee.getY();
 				int deplacementLigne = caseDepart.getX() - caseArrivee.getX();
 	
+				// Tests pour éviter de pouvoir prendre des pièces situés derrière le pion
 				if (couleurDepart == EnumCouleurs.BLANC)
 				{
 					if (caseArrivee.getX() >= caseDepart.getX())
@@ -101,6 +119,11 @@ public class Partie
 		}
     }
 
+    /**
+     * Retourne un boolean indiquant si c'est le premier déplacement du pion situé sur la caseDépart.
+     * @param caseDepart Une case 
+     * @return false si caseDépart ne contient pas un pion ou s'il n'est plus sur la ligne de départ des pions, true sinon.
+     */
 	public boolean isPremierDeplacementPion(Case caseDepart)
 	{
 		Piece piece = caseDepart.getPiece();
@@ -130,7 +153,12 @@ public class Partie
 		}
 	}
 
-
+	/**
+	 * Méthode qui indique si rien ne gène le déplacement d'une case de départ à une case d'arrivée.
+	 * @param caseDepart La case de départ
+	 * @param caseArrivee La case d'arrivée
+	 * @return false si quelque chose gène le déplacement, true sinon
+	 */
 	public boolean deplacementNonGene(Case caseDepart, Case caseArrivee)
 	{
 		Piece pieceDepart = caseDepart.getPiece();
@@ -292,6 +320,11 @@ public class Partie
 		return true;
 	}
 	
+	/**
+	 * Méthode qui retourne les cases sur lesquelles sont situées les pièces adverses.
+	 * @param couleurJoueur La couleur du joueur au tour (si le joueur au tour est BLANC, alors on retourne la position des pièces NOIRES)
+	 * @return Un ArrayList de Case contenant les cases sur lesquelles sont situées les pièces adverses.
+	 */
 	public ArrayList<Case> obtenirPositionPiecesAdverses(EnumCouleurs couleurJoueur)
 	{
 		ArrayList<Case> result = new ArrayList<Case>();
@@ -314,6 +347,11 @@ public class Partie
 		return result;
 	}
 	
+	/**
+	 * Retourne la case contenant le roi de couleur passée en paramètre.
+	 * @param couleur La couleur du roi qu'on veut récupérer.
+	 * @return La Case sur laquelle est le roi, null si il n'est pas sur l'échiquier (ne devrait jamais arriver)
+	 */
 	public Case getPositionRoi(EnumCouleurs couleur)
 	{
 		Case caseRoi = null;
@@ -341,6 +379,11 @@ public class Partie
 		return caseRoi;
 	}
 	
+	/**
+	 * Retourne si le roi de couleur passée en paramètre est en échec.
+	 * @param couleurRoi La couleur du roi dont il faut tester l'échec.
+	 * @return true si le roi est en échec, false sinon
+	 */
 	public boolean isEchec(EnumCouleurs couleurRoi)
 	{
 		Case caseRoi = this.getPositionRoi(couleurRoi);
@@ -375,6 +418,11 @@ public class Partie
 		return result;
 	}
 	
+	/**
+	 * Retourne si le roi de couleur passée en paramètre est en échec et mat.
+	 * @param couleur La couleur du roi dont il faut tester l'échec et mat.
+	 * @return true si le roi est en échec et mat, false sinon
+	 */
 	public boolean isEchecEtmat(EnumCouleurs couleur)
 	{
 		int nbEchec = 0;
@@ -425,6 +473,11 @@ public class Partie
 		return nbEchec == nbDeplacement && nbEchec != 0;
 	}
 	
+	/**
+	 * Retourne la couleur du joueur courant.
+	 * @param joueurCourant Le joueur courant
+	 * @return Couleur du joueur courant
+	 */
 	private EnumCouleurs getCouleurJoueur(Joueur joueurCourant)
 	{
 		if (joueurCourant.equals(this.joueurs[0]))
@@ -437,6 +490,11 @@ public class Partie
 		}
 	}
 	
+	/**
+	 * Méthode qui redemande la saisie de la case de départ tant que celle-ci n'est pas bonne.
+	 * @param joueurCourant Le joueur courant
+	 * @return La Case saisie par le joueur courant
+	 */
 	private Case saisirBonneCaseDepart(Joueur joueurCourant)
 	{
 		boolean isValid = false;
@@ -465,6 +523,11 @@ public class Partie
 		return caseDepart;
 	}
 
+	/**
+	 * Cette méthode fait jouer le tour du joueur courant et retourne s'il peut continuer à jouer ou non.
+	 * @param joueurCourant Le joueur au trait
+	 * @return true si le joueur peut encore jouer, false si celui-ci est en échec et mat
+	 */
 	public boolean jouerTour(Joueur joueurCourant)
 	{
 		EnumCouleurs couleurJoueur = this.getCouleurJoueur(joueurCourant);
@@ -488,6 +551,7 @@ public class Partie
 					Case caseArrivee = joueurCourant.saisirCaseArrivee();
 					Piece pieceArrivee = caseArrivee.getPiece();
 					
+					// On teste si on ne tente pas de manger une pièce alliée
 					while (pieceDepart.getCouleur() == pieceArrivee.getCouleur())
 					{
 						System.out.println("On ne peut pas manger une pièce de la même couleur. Veuillez recommencer.");
@@ -497,11 +561,26 @@ public class Partie
 						pieceArrivee = caseArrivee.getPiece();
 					}
 					
-					while (!(pieceDepart.deplacementPossible(caseDepart, caseArrivee)) && !(this.deplacementNonGene(caseDepart, caseArrivee)))
+					// On test ensuite si le déplacement est possible
+					while (!pieceDepart.deplacementPossible(caseDepart, caseArrivee))
 					{
 						System.out.println("Le déplacement n'est pas valide, merci de recommencer.");
+						caseDepart = this.saisirBonneCaseDepart(joueurCourant);
+						pieceDepart = caseDepart.getPiece();
+						caseArrivee = joueurCourant.saisirCaseArrivee();
 					}
 					
+					// On teste enfin si le déplacement n'est pas gêné sur son chemin
+					while (!(this.deplacementNonGene(caseDepart, caseArrivee)))
+					{
+						System.out.println("Le déplacement n'est pas possible sur la case choisie.");
+						caseDepart = this.saisirBonneCaseDepart(joueurCourant);
+						pieceDepart = caseDepart.getPiece();
+						caseArrivee = joueurCourant.saisirCaseArrivee();
+					}
+					
+					// Si toute les conditions sont bonnes, on teste en déplacement la pièce de caseDépart à caseArrivée
+					// si le roi est encore en échec ou non
 					caseDepart.setPiece(null);
 					caseArrivee.setPiece(pieceDepart);
 					this.echiquierPartie.setCase(caseDepart);
@@ -515,15 +594,16 @@ public class Partie
 					{
 						caseDepart.setPiece(pieceDepart);
 						caseArrivee.setPiece(null);
+						this.echiquierPartie.setCase(caseDepart);
+						this.echiquierPartie.setCase(caseArrivee);
+						
 						System.out.println("Ce déplacement ne peut être effectué car Roi sera toujours en échec.");
-					}
-					
-					this.echiquierPartie.setCase(caseDepart);
-					this.echiquierPartie.setCase(caseArrivee);
+					}	
 					
 					if (this.isEchecEtmat(couleurJoueur))
 					{
 						peutContinuer = false;
+						isEchec = false;
 					}
 				}
 			}
@@ -534,16 +614,10 @@ public class Partie
 			Piece pieceDepart = caseDepart.getPiece();
 			Case caseArrivee = joueurCourant.saisirCaseArrivee();
 			caseArrivee.setPiece(this.echiquierPartie.getCase(caseArrivee.getX(), caseArrivee.getY()).getPiece());
-			Piece pieceArrivee = caseArrivee.getPiece();
 			
-			if (this.pionPeutPrendre(caseDepart, caseArrivee))
-			{
-				caseDepart.setPiece(null);
-				caseArrivee.setPiece(pieceDepart);
-				this.echiquierPartie.setCase(caseDepart);
-				this.echiquierPartie.setCase(caseArrivee);
-			}
-			else
+			// Si l'on a affaire à une autre pièce qu'un pion, on fait des test supplémentaires, sinon on
+			// met directement l'échiquier à jour.
+			if (!this.pionPeutPrendre(caseDepart, caseArrivee))
 			{
 				while (!pieceDepart.deplacementPossible(caseDepart, caseArrivee))
 				{
@@ -571,6 +645,11 @@ public class Partie
 		return peutContinuer;
 	}
 	
+	/**
+	 * Retourne le prochain joueur
+	 * @param joueurCourant Le joueur au trait
+	 * @return Le prochain joueur
+	 */
 	private Joueur prochainJoueur(Joueur joueurCourant)
 	{
 		if (joueurCourant.equals(this.joueurs[0]))
@@ -583,6 +662,9 @@ public class Partie
 		}
 	}
 	
+	/**
+	 * Méthode qui, pour une partie correctement initialisée, fait jouer les joueurs jusqu'à ce que la partie se termine.
+	 */
 	public void jouer()
 	{
 		Joueur joueurCourant = this.joueurs[0];
@@ -593,6 +675,7 @@ public class Partie
 			System.out.println("\n" + this.echiquierPartie);
 			System.out.println("Au tour de " + joueurCourant + " jouer."); 
 			
+			// Si jouerTour renvoie false, alors le joueur courant est échec et mat.
 			if (!this.jouerTour(joueurCourant))
 			{
 				estTerminee = true;

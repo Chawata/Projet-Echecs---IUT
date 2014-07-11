@@ -49,7 +49,7 @@ public class Case
 
 	/**
 	 * Change l'abscisse de la case uniquement si la valeur fournie est correcte.
-	 * @param x
+	 * @param x La nouvelle abscisse
 	 */
 	public void setX(int x)	
 	{
@@ -61,7 +61,7 @@ public class Case
 
 	/**
 	 * Change l'ordonnée de la case uniquement si la valeur fournie est correcte.
-	 * @param y
+	 * @param y La nouvelle ordonnée
 	 */
 	public void setY(int y) 	
 	{                
@@ -70,12 +70,20 @@ public class Case
 			this.y = y;
 		}       
 	}
-
+	
+	/**
+	 * Permet d'obtenir la pièce qu'il y a sur la case courante.
+	 * @return La pièce qu'il y a sur cette case (ou null si rien)
+	 */
 	public Piece getPiece()
 	{
 		return this.pieceC;
 	}
 
+	/**
+	 * Permet de modifier la pièce qu'il y a sur la case courante.
+	 * @param piece Une pièce qui peut valoir null
+	 */
 	public void setPiece(Piece piece)
 	{
 		this.pieceC = piece;
@@ -90,6 +98,9 @@ public class Case
 		return this.pieceC != null;
 	}
 
+	/**
+	 * Teste l'égalité de deux cases en se basant sur leurs coordonnées.
+	 */
 	@Override
 	public boolean equals(Object o)
 	{

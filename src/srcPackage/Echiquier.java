@@ -11,10 +11,11 @@ import java.util.Arrays;
 
 public class Echiquier
 {
+	// Constantes de classe publiques représentant respectivement le libellé des abscisses et des ordonnées
 	public static final List<String> Abscisses = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8");
 	public static final List<String> Ordonnees = Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H");
 	
-	private static final int N = 8;
+	private static final int N = 8; // Constante de classe privée indiquant la taille de l'échiquier
 	
 	private Case[][] tabCase; 
 	
@@ -33,7 +34,8 @@ public class Echiquier
 			}
 		}
 	}
-
+	
+	@Override
 	public String toString()
 	{
 		String result = "   ";
@@ -58,11 +60,21 @@ public class Echiquier
 		return result;	
 	}
 
+	/**
+	 * Permet d'obtenir la case de coordonnées (i;j)
+	 * @param i L'abscisse de la case à récupérer ; cette valeur doit appartenir à [0;7]
+	 * @param j L'ordonnée de la case à récupérer ; cette valeur doit appartenir à [0;7]
+	 * @return La case de coordonées (i;j)
+	 */
 	public Case getCase(int i, int j)
 	{
 		return this.tabCase[i][j];
 	}
 	
+	/**
+	 * Permet de mettre à jour une case 
+	 * @param c Une case qui remplacera la case de coordonées (c.getX() ; c.getY())
+	 */
 	public void setCase(Case c)
 	{
 		this.tabCase[c.getX()][c.getY()] = c;

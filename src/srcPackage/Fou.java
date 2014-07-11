@@ -23,6 +23,7 @@ public class Fou extends Piece
 	 * @param caseDepart Case qui contient le Fou à déplacer.
 	 * @param caseArrivee Case où l'on veut déplacer le Fou sélectionné.
 	 */
+	@Override
 	public boolean deplacementPossible(Case caseDepart, Case caseArrivee)    
 	{
 		int deplacementColonne = caseDepart.getY() - caseArrivee.getY();
@@ -31,6 +32,7 @@ public class Fou extends Piece
 		return (Math.abs(deplacementColonne) - Math.abs(deplacementLigne)) == 0;
 	}        
 
+	@Override
 	public String toString()    
 	{        
 		return "F" + super.toString();    

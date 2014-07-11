@@ -22,6 +22,7 @@ public class Pion extends Piece
 	 * @param caseDepart Case qui contient le Pion à déplacer.
 	 * @param caseArrivee Case où l'on veut déplacer le Pion sélectionné.
 	 */
+	@Override
 	public boolean deplacementPossible(Case caseDepart, Case caseArrivee)    
 	{
 		final int ligneDepartNoir = 1;
@@ -51,6 +52,7 @@ public class Pion extends Piece
 		}
 	}
 
+	@Override
 	public String toString()    
 	{        
 		return "P" + super.toString();    

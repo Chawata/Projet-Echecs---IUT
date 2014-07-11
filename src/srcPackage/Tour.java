@@ -22,11 +22,13 @@ public class Tour extends Piece
 	 * @param caseDepart Case qui contient la Tour à déplacer.
 	 * @param caseArrivee Case où l'on veut déplacer la Tour sélectionnée.
 	 */
+    @Override
     public boolean deplacementPossible(Case caseDepart, Case caseArrivee)
     {
         return (caseDepart.getX() == caseArrivee.getX()) || (caseDepart.getY() == caseArrivee.getY());
     }
     
+    @Override
     public String toString()
     {
         return "T" + super.toString();
